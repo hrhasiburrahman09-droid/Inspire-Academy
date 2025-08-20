@@ -12,9 +12,18 @@
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
         .floating { animation: float 3s ease-in-out infinite; }
         .btn-primary { background-color: #fbbf24; color: black; transition: all 0.3s ease; }
-        .btn-primary:hover { background-color: #f59e0b; transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(245,158,11,0.4); }
+        .btn-primary:hover { background-color: #f59e0b; transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.4); }
         .course-card { transition: all 0.3s ease; }
-        .course-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04); }
+        .course-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+
+        /* WhatsApp pulse animation */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .whatsapp-pulse {
+            animation: pulse 2s infinite;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-b from-blue-50 to-white text-gray-800">
@@ -23,102 +32,128 @@
 <header class="bg-blue-600 text-white py-4 shadow-md sticky top-0 z-50">
     <div class="container mx-auto flex justify-between items-center px-4">
         <h1 class="text-2xl md:text-3xl font-bold flex items-center gap-2">
-            <span class="text-yellow-400" aria-hidden="true">💡</span> Inspire Academy
+            <span class="text-yellow-400">💡</span> Inspire Academy
         </h1>
         <nav class="hidden md:flex gap-6">
-            <a href="#about" class="hover:text-yellow-300 transition-colors duration-200 py-2">About</a>
-            <a href="#batches" class="hover:text-yellow-300 transition-colors duration-200 py-2">Batches</a>
-            <a href="#enroll" class="hover:text-yellow-300 transition-colors duration-200 py-2">Enroll</a>
-            <a href="#contact" class="hover:text-yellow-300 transition-colors duration-200 py-2">Contact</a>
+            <a href="#about" class="hover:text-yellow-300 transition-colors py-2">About</a>
+            <a href="#courses" class="hover:text-yellow-300 transition-colors py-2">Courses</a>
+            <a href="#batches" class="hover:text-yellow-300 transition-colors py-2">Batches</a>
+            <a href="#contact" class="hover:text-yellow-300 transition-colors py-2">Contact</a>
         </nav>
-        <button class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-300" onclick="toggleMobileMenu()" aria-label="Toggle menu" aria-expanded="false" id="menu-toggle">
+        <button class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-300" onclick="toggleMobileMenu()" aria-label="Toggle menu" id="menu-toggle">
             <i data-lucide="menu" id="menu-icon"></i>
         </button>
     </div>
     <div class="hidden flex-col gap-4 px-4 pb-4 md:hidden bg-blue-600" id="mobile-menu">
-        <a href="#about" class="hover:text-yellow-300 py-2 transition-colors duration-200" onclick="closeMobileMenu()">About</a>
-        <a href="#batches" class="hover:text-yellow-300 py-2 transition-colors duration-200" onclick="closeMobileMenu()">Batches</a>
-        <a href="#enroll" class="hover:text-yellow-300 py-2 transition-colors duration-200" onclick="closeMobileMenu()">Enroll</a>
-        <a href="#contact" class="hover:text-yellow-300 py-2 transition-colors duration-200" onclick="closeMobileMenu()">Contact</a>
+        <a href="#about" onclick="closeMobileMenu()" class="hover:text-yellow-300 py-2">About</a>
+        <a href="#courses" onclick="closeMobileMenu()" class="hover:text-yellow-300 py-2">Courses</a>
+        <a href="#batches" onclick="closeMobileMenu()" class="hover:text-yellow-300 py-2">Batches</a>
+        <a href="#contact" onclick="closeMobileMenu()" class="hover:text-yellow-300 py-2">Contact</a>
     </div>
 </header>
 
-<!-- Hero Section -->
+<!-- Hero -->
 <section class="text-center py-16 bg-gradient-to-r from-blue-600 to-blue-500 text-white relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMS41Ij48cGF0aCBkPSJNIDAgMCBMIDYwIDYwIE0gNjAgMCBMIDAgNjAiLz48L2c+PC9zdmc+')]"></div>
+    <h2 class="text-3xl md:text-5xl font-bold mb-4 relative z-10">
+        A Glimpse of Inspiration <span class="floating inline-block">✨</span>
+    </h2>
+    <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto relative z-10">
+        Quality education for Classes 6–12 with expert guidance in Science, Arts, and more.
+    </p>
+    <div class="flex justify-center gap-4 relative z-10">
+        <button class="btn-primary font-semibold py-3 px-6 rounded-lg text-lg" onclick="scrollToForm()">Enroll Now</button>
+        <a href="#courses" class="bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition">View Courses</a>
     </div>
-    <h2 class="text-3xl md:text-5xl font-bold mb-4 relative z-10">A Glimpse of Inspiration <span class="floating inline-block">✨</span></h2>
-    <p class="text-lg md:text-xl mb-6 max-w-2xl mx-auto relative z-10">Quality education for Classes 6–12 with expert guidance in Science, Arts, and more.</p>
-    <button class="btn-primary font-semibold py-3 px-6 rounded-lg text-lg relative z-10" onclick="scrollToForm()">Enroll Now</button>
 </section>
 
-<!-- About Section -->
+<!-- About -->
 <section id="about" class="container mx-auto py-16 px-4">
     <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-blue-600">About Us</h2>
-    <p class="max-w-3xl mx-auto text-center text-lg">Inspire Academy is dedicated to empowering students with knowledge and confidence. With specialized classes for Science, Arts, and core subjects, we provide a supportive environment where students can thrive academically and personally.</p>
-    <div class="grid md:grid-cols-3 gap-6 mt-12">
-        <div class="course-card text-center p-6 rounded-2xl shadow-md border-0 bg-white">
+    <p class="max-w-3xl mx-auto text-center text-lg">
+        Inspire Academy empowers students with knowledge and confidence. Specialized classes for Science, Arts, and core subjects help students thrive academically and personally.
+    </p>
+</section>
+
+<!-- Courses -->
+<section id="courses" class="container mx-auto py-16 px-4">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-blue-600">Our Courses</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+        <div class="course-card text-center p-6 rounded-2xl shadow-md bg-white">
             <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
                 <i data-lucide="book-text" class="w-8 h-8 text-blue-600"></i>
             </div>
-            <h3 class="font-bold text-lg mt-4">Quality Education</h3>
-            <p class="text-gray-600 mt-2">Comprehensive curriculum designed for academic excellence</p>
+            <h3 class="font-bold text-lg mt-4">Science Stream</h3>
+            <p class="text-gray-600 mt-2">Physics, Chemistry, Biology guidance for top performance.</p>
         </div>
-        <div class="course-card text-center p-6 rounded-2xl shadow-md border-0 bg-white">
-            <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
-                <i data-lucide="user" class="w-8 h-8 text-blue-600"></i>
-            </div>
-            <h3 class="font-bold text-lg mt-4">Expert Teachers</h3>
-            <p class="text-gray-600 mt-2">Experienced educators passionate about student success</p>
-        </div>
-        <div class="course-card text-center p-6 rounded-2xl shadow-md border-0 bg-white">
+        <div class="course-card text-center p-6 rounded-2xl shadow-md bg-white">
             <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
                 <i data-lucide="book-open" class="w-8 h-8 text-blue-600"></i>
             </div>
-            <h3 class="font-bold text-lg mt-4">Personalized Approach</h3>
-            <p class="text-gray-600 mt-2">Tailored learning plans for individual student needs</p>
+            <h3 class="font-bold text-lg mt-4">Arts Stream</h3>
+            <p class="text-gray-600 mt-2">History, Geography, and social studies coaching for clarity and confidence.</p>
+        </div>
+        <div class="course-card text-center p-6 rounded-2xl shadow-md bg-white">
+            <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <i data-lucide="user" class="w-8 h-8 text-blue-600"></i>
+            </div>
+            <h3 class="font-bold text-lg mt-4">English & ICT</h3>
+            <p class="text-gray-600 mt-2">Develop essential skills for higher secondary exams and beyond.</p>
         </div>
     </div>
 </section>
 
-<!-- Batches Section -->
+<!-- Testimonials -->
+<section class="container mx-auto py-16 px-4">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-blue-600">What Students Say</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+        <div class="testimonial">
+            <p>"Inspire Academy helped me improve my grades drastically!"</p>
+            <p class="mt-2 font-semibold text-blue-600">– Student A</p>
+        </div>
+        <div class="testimonial">
+            <p>"Highly recommended for dedicated teachers and personal attention."</p>
+            <p class="mt-2 font-semibold text-blue-600">– Parent B</p>
+        </div>
+    </div>
+</section>
+
+<!-- Batches -->
 <section id="batches" class="bg-blue-50 py-16 px-4">
     <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-blue-600">Academic Batches</h2>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 container mx-auto">
         <div class="course-card rounded-2xl shadow-md">
-            <div class="rounded-2xl border-0 h-full bg-white p-6 text-center flex flex-col items-center">
+            <div class="rounded-2xl h-full bg-white p-6 text-center flex flex-col items-center">
                 <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                     <i data-lucide="book-open" class="w-8 h-8 text-blue-600"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Class 6 – 10</h3>
+                <h3 class="font-bold text-lg mb-2">Class 6–10</h3>
                 <p class="text-gray-600 flex-grow">Strong foundation in core subjects</p>
             </div>
         </div>
         <div class="course-card rounded-2xl shadow-md">
-            <div class="rounded-2xl border-0 h-full bg-white p-6 text-center flex flex-col items-center">
+            <div class="rounded-2xl h-full bg-white p-6 text-center flex flex-col items-center">
                 <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                     <i data-lucide="book-open" class="w-8 h-8 text-blue-600"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Class 11–12 (English, ICT)</h3>
+                <h3 class="font-bold text-lg mb-2">Class 11–12</h3>
                 <p class="text-gray-600 flex-grow">Advanced guidance for higher secondary</p>
             </div>
         </div>
         <div class="course-card rounded-2xl shadow-md">
-            <div class="rounded-2xl border-0 h-full bg-white p-6 text-center flex flex-col items-center">
+            <div class="rounded-2xl h-full bg-white p-6 text-center flex flex-col items-center">
                 <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                     <i data-lucide="book-open" class="w-8 h-8 text-blue-600"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Science: Biology, Chemistry</h3>
+                <h3 class="font-bold text-lg mb-2">Science: Biology & Chemistry</h3>
                 <p class="text-gray-600 flex-grow">Expert mentoring in science streams</p>
             </div>
         </div>
         <div class="course-card rounded-2xl shadow-md">
-            <div class="rounded-2xl border-0 h-full bg-white p-6 text-center flex flex-col items-center">
+            <div class="rounded-2xl h-full bg-white p-6 text-center flex flex-col items-center">
                 <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                     <i data-lucide="book-open" class="w-8 h-8 text-blue-600"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Arts: History, Geography</h3>
+                <h3 class="font-bold text-lg mb-2">Arts: History & Geography</h3>
                 <p class="text-gray-600 flex-grow">Focused coaching for arts students</p>
             </div>
         </div>
@@ -130,97 +165,110 @@
     <div class="max-w-2xl mx-auto rounded-2xl shadow-lg bg-white p-6">
         <h3 class="text-2xl font-bold text-center mb-6 text-blue-600">Enrollment Form</h3>
         <form id="enrollForm" action="https://formspree.io/f/xdkdryjo" method="POST" class="space-y-4">
-            <input type="hidden" name="_subject" value="New Enrollment Form Submission" />
             <div class="space-y-2">
                 <label for="name" class="block font-medium">Student Name</label>
-                <input id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" required placeholder="Enter full name" />
+                <input type="text" name="name" id="name" placeholder="Enter full name" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"/>
             </div>
             <div class="space-y-2">
                 <label for="phone" class="block font-medium">Phone Number</label>
-                <input id="phone" name="phone" type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" required placeholder="Enter phone number" />
+                <input type="tel" name="phone" id="phone" placeholder="Enter phone number" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"/>
             </div>
             <div class="space-y-2">
                 <label for="class" class="block font-medium">Class/Grade</label>
-                <input id="class" name="class" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" required placeholder="Enter your class" />
+                <input type="text" name="class" id="class" placeholder="Enter your class" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"/>
             </div>
             <div class="space-y-2">
                 <label for="subject" class="block font-medium">Subject of Interest</label>
-                <input id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" required placeholder="Enter subject(s) of interest" />
+                <input type="text" name="subject" id="subject" placeholder="Enter subject(s) of interest" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"/>
             </div>
+            <div id="formSuccess" class="hidden text-green-600 font-semibold text-center">Thank you! We will contact you shortly.</div>
             <div class="pt-4">
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center">
                     <i data-lucide="send" class="w-4 h-4 mr-2"></i> Submit Enrollment
                 </button>
             </div>
-            <p id="formSuccess" class="text-green-600 mt-4 hidden text-center font-medium">Thank you! Your enrollment has been submitted.</p>
         </form>
     </div>
 </section>
 
-<!-- Contact Section -->
+<!-- Contact -->
 <section id="contact" class="container mx-auto py-16 px-4">
     <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-blue-600">Contact Us</h2>
     <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        <div class="course-card p-6 rounded-2xl shadow-md border-0 bg-white h-full">
+        <div class="course-card p-6 rounded-2xl shadow-md bg-white">
             <h3 class="font-semibold text-lg">Hasibur Rahman</h3>
-            <p class="flex items-center gap-2 text-gray-700 mt-3"><i data-lucide="phone" class="w-5 h-5 text-blue-600"></i> +8801813 240 640</p>
-            <p class="flex items-center gap-2 text-gray-700 mt-2"><i data-lucide="mail" class="w-5 h-5 text-blue-600"></i> hrhasiburrahman09@gmail.com</p>
+            <p class="flex items-center gap-2 mt-3"><i data-lucide="phone" class="w-5 h-5 text-blue-600"></i> +8801813 240 640</p>
+            <p class="flex items-center gap-2 mt-2"><i data-lucide="mail" class="w-5 h-5 text-blue-600"></i> hrhasiburrahman09@gmail.com</p>
         </div>
-        <div class="course-card p-6 rounded-2xl shadow-md border-0 bg-white h-full">
+        <div class="course-card p-6 rounded-2xl shadow-md bg-white">
             <h3 class="font-semibold text-lg">Sifat Hasan</h3>
-            <p class="flex items-center gap-2 text-gray-700 mt-3"><i data-lucide="phone" class="w-5 h-5 text-blue-600"></i> +880153 7119 500</p>
-            <p class="flex items-center gap-2 text-gray-700 mt-2"><i data-lucide="map-pin" class="w-5 h-5 text-blue-600"></i> House No. 600, Below Vidyakosh Coaching Centre, Dania Bazar Road, Dhaka-1236</p>
+            <p class="flex items-center gap-2 mt-3"><i data-lucide="phone" class="w-5 h-5 text-blue-600"></i> +880153 7119 500</p>
+            <p class="flex items-center gap-2 mt-2"><i data-lucide="map-pin" class="w-5 h-5 text-blue-600"></i> House No. 600, Below Vidyakosh Coaching Centre, Dania Bazar Road, Dhaka-1236</p>
         </div>
     </div>
 </section>
 
 <!-- Footer -->
 <footer class="bg-blue-600 text-yellow-200 text-center py-6 mt-10">
-    <p>© 2023 Inspire Academy | A Glimpse of Inspiration</p>
+    <p>© 2025 Inspire Academy | A Glimpse of Inspiration</p>
+    <div class="flex justify-center gap-4 mt-2">
+        <a href="#" class="hover:text-white"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+        <a href="#" class="hover:text-white"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+        <a href="#" class="hover:text-white"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+    </div>
 </footer>
+
+<!-- WhatsApp Chat Widget -->
+<a href="https://wa.me/8801813240640" target="_blank" 
+   class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center z-50 whatsapp-pulse"
+   title="Chat with us on WhatsApp">
+    <i data-lucide="message-circle" class="w-6 h-6"></i>
+</a>
 
 <script>
     lucide.createIcons();
 
-    // Mobile menu functions
     function toggleMobileMenu() {
         const menu = document.getElementById('mobile-menu');
         const icon = document.getElementById('menu-icon');
         const toggle = document.getElementById('menu-toggle');
-        if (menu.classList.contains('hidden')) {
+        if(menu.classList.contains('hidden')) {
             menu.classList.remove('hidden'); menu.classList.add('flex');
-            toggle.setAttribute('aria-expanded', 'true'); icon.setAttribute('data-lucide', 'x');
+            toggle.setAttribute('aria-expanded','true'); icon.setAttribute('data-lucide','x');
         } else {
             menu.classList.add('hidden'); menu.classList.remove('flex');
-            toggle.setAttribute('aria-expanded', 'false'); icon.setAttribute('data-lucide', 'menu');
+            toggle.setAttribute('aria-expanded','false'); icon.setAttribute('data-lucide','menu');
         }
         lucide.createIcons();
     }
+
     function closeMobileMenu() {
         const menu = document.getElementById('mobile-menu');
         const icon = document.getElementById('menu-icon');
         const toggle = document.getElementById('menu-toggle');
         menu.classList.add('hidden'); menu.classList.remove('flex');
-        toggle.setAttribute('aria-expanded', 'false'); icon.setAttribute('data-lucide', 'menu');
+        toggle.setAttribute('aria-expanded','false'); icon.setAttribute('data-lucide','menu');
         lucide.createIcons();
     }
 
-    // Scroll to form
-    function scrollToForm() { document.getElementById('enroll').scrollIntoView({ behavior: 'smooth' }); }
+    function scrollToForm() { document.getElementById('enroll').scrollIntoView({behavior:'smooth'}); }
 
-    // Formspree submission
-    const form = document.getElementById('enrollForm');
-    const successMessage = document.getElementById('formSuccess');
-    form.addEventListener('submit', async function(event) {
-        event.preventDefault();
-        const formData = new FormData(form);
-        try {
-            const response = await fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' }});
-            if (response.ok) { form.reset(); successMessage.classList.remove('hidden'); }
-            else { alert('Oops! There was a problem submitting your form.'); }
-        } catch (error) { alert('Oops! There was a problem submitting your form.'); }
+    document.getElementById('enrollForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = e.target;
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if(response.ok) {
+                document.getElementById('formSuccess').classList.remove('hidden');
+                form.reset();
+            } else {
+                alert('Oops! There was a problem submitting your form.');
+            }
+        });
     });
 </script>
-
 </body>
 </html>
